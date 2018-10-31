@@ -1,0 +1,142 @@
+@font-face {
+    font-family: MyriadPro-Bold;
+    src: url(../fonts/MyriadPro-Bold.woff);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100%;
+    font-family: 'Lato', sans-serif;
+}
+
+a{
+	text-decoration: none;
+	color: #fff;
+}
+
+.container {
+    max-width: 1230px;
+    margin: 0 auto;
+}
+
+ul li {
+    list-style: none;
+}
+
+/*Header*/
+
+.header {
+    color: white;
+    background-image: url(../img/headerBG.jpeg);
+    background-position: top center;
+    background-color: rgba(0, 0, 0, .83);
+    background-blend-mode: multiply;
+}
+
+.menu{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: inset 0 -1px 0 0 rgba(255,255,255,0.15);
+}
+
+.menu .logo{
+    display: block;
+	align-items: center;
+	transition: 0.3s filter;
+}
+
+.nav ul {
+    display: flex;
+	margin-left: auto;
+}
+
+.nav ul li {
+    padding-left: 2.15rem;
+	padding-right: 2.15rem; 
+}
+
+.nav ul li a {
+	display: block;
+	padding: 37px 0;
+	font-size: 1rem;
+	border-bottom: 1px solid rgba(255,255,255,0);
+	transition: 0.1s border-color linear;
+}
+
+.nav ul li a:hover {
+	border-color: rgba(255,255,255,1);
+}
+
+.banner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Georgia;
+    font-style: italic;
+    font-size: 2rem;
+    text-align: center;
+    padding-top: 20.5rem;
+	padding-bottom: 21.2rem;
+
+}
+
+.banner span {
+    font-family: MyriadPro-Bold;
+    font-style: initial;
+    font-size: 4.5rem;
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.banner p {
+    margin-top: 0.7rem;
+}
+
+.authorization{
+    margin-bottom: 0;
+	width: 100%;
+	font-size: 0;
+	background: rgba(57, 208, 131, 0.91);
+}
+
+.submit{
+    position: relative;
+	display: inline-block;
+	width: 48.7%;
+	padding: 50px 100px;
+	text-transform: uppercase;
+    font-size: 22px;
+    font-weight: 700;
+    color: white;
+}
+
+.login{
+    padding-right: 246px;
+	text-align: right;
+	background: rgba(32, 55, 71, 0.91);
+}
+
+.login::after {
+	position: absolute;
+	content: '';
+	display: block;
+	width: 0;
+  height: 0;
+	top: 0;
+	right: -28px;
+  border-top: 120px solid rgba(32, 55, 71, 0.91);
+  border-right: 28px solid transparent;
+}
+
+.register{
+    padding-left: 268px;
+	text-align: left;
+}
+
