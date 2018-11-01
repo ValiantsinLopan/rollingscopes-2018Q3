@@ -128,11 +128,11 @@ ul li {
 	content: '';
 	display: block;
 	width: 0;
-  height: 0;
+    height: 0;
 	top: 0;
 	right: -28px;
-  border-top: 120px solid rgba(32, 55, 71, 0.91);
-  border-right: 28px solid transparent;
+    border-top: 120px solid rgba(32, 55, 71, 0.91);
+    border-right: 28px solid transparent;
 }
 
 .register{
@@ -140,3 +140,104 @@ ul li {
 	text-align: left;
 }
 
+.domain{
+    display: flex;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    flex-direction: column;
+    align-items: center;
+}
+
+.domain h2 {
+    font-size:  1.5rem;
+}
+
+.domain h2+p {
+    font-family: 'Montserrat-UltraLight', sans-serif;
+    padding-top: 1.5rem;
+    letter-spacing: 0.7px;
+    color: rgba(162, 162, 162, 255);
+    margin-bottom: 50px;
+}
+
+.domain_form{
+    display: flex;
+    max-width: 890px;
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 40px;
+    border: 1px solid #d9d9d9;
+    color: #d9d9d9;
+}
+
+.domain_label {
+	margin: 5px 0;
+	padding: 8px 15px;
+	background-color: transparent;
+    color: #cbcbcb;
+}
+
+.domain_input {
+    margin: 5px 0;
+	padding: 10px;
+	width: 730px;
+	border: 0;
+	font-weight: 500;
+	background-color: transparent;
+    color: #868686;
+    border-left: 1px solid #d9d9d9;
+    border-right: 1px solid #d9d9d9;
+}
+
+.domain_select {
+	position: relative;
+    margin: 12px auto;
+	height: 20px;
+    width: 54px;
+    border: none;
+	color: #cbcbcb;
+	background-color: transparent;
+	cursor: pointer;
+}
+
+.domain_price{
+    position: relative;
+    max-width: 890px;
+    width: 100%;
+    text-align: center;
+    text-transform: capitalize;
+    border-collapse: collapse;
+    color: #cbcbcb;
+    font-size: 0.875rem;
+}
+
+.domain_price tr,
+.domain_price td{
+    position: relative;
+    width: 25%;
+    border: 1px solid #d9d9d9;
+    padding: 40px 0;
+}
+
+.domain_price tr:last-child td:after{
+	content: "";
+	position: absolute;
+	width: 13px;
+	height: 13px;
+	background-color: #fff;
+	top: -7px;
+	right: -7px;
+}
+.domain_price tr:last-child td:last-child:after{
+	width: 27px;
+	right: 0;
+}
+.domain_price tr:last-child td:first-child:before{
+	content: "";
+	position: absolute;
+	width: 27px;
+	height: 13px;
+	background-color: #fff;
+	top: -7px;
+	left: 0;
+}
