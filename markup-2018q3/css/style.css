@@ -101,6 +101,7 @@ ul li {
 }
 
 .authorization {
+    max-height: 120px;
     margin-bottom: 0;
     width: 100%;
     font-size: 0;
@@ -119,6 +120,7 @@ ul li {
 }
 
 .login {
+    max-height: 120px;
     padding-right: 246px;
     text-align: right;
     background: rgba(32, 55, 71, 0.91);
@@ -139,6 +141,14 @@ ul li {
 .register {
     padding-left: 268px;
     text-align: left;
+}
+
+.submit.login:hover,
+.submit.login:focus,
+.submit.register:hover,
+.submit.register:focus {
+	outline: 0;
+	text-decoration: underline;
 }
 
 .domain {
@@ -272,6 +282,11 @@ ul li {
     background-color: white;
     -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+}
+
+.package:hover,
+.package:focus {
+    background-color: #ececec;
 }
 
 .basic {
