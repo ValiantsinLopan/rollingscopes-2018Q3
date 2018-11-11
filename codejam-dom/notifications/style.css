@@ -1,0 +1,50 @@
+.notification {
+    background: #ffffff;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 10px rgba(0,0,0,.2);
+    position: fixed;
+    right: 30px;
+    top: 20px;
+    width: 320px;
+    z-index: 100;
+}
+.content {
+    padding: 10px;
+    display: block;
+}
+
+.close-button{
+    float: right;
+    cursor: pointer;
+}
+
+.tip-container {
+    max-width: 80%;
+    max-height: 70%;
+    border: 2px solid black;
+    padding: 1rem;
+}
+
+.tip-container h4 {
+    margin: 0 auto;
+    text-transform: uppercase;
+}
+
+.navigation-bar {
+    display: flex;
+    margin-top: 10px;
+}
+
+.disable-tips {
+    width: 50%;
+}
+
+.navigation {
+    float: right;
+    width: 50%;
+}
+
+.arrow {
+    text-align: center;
+    cursor: pointer;
+}
