@@ -1,7 +1,7 @@
 .notification {
     background: #ffffff;
     border: 1px solid #ccc;
-    box-shadow: 0 2px 10px rgba(0,0,0,.2);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .2);
     display: none;
     position: fixed;
     right: 30px;
@@ -9,15 +9,17 @@
     width: 400px;
     z-index: 100;
 }
+
 .content {
     padding: 10px;
     display: block;
 }
 
-.close-button{
+.close-button {
     float: right;
     cursor: pointer;
 }
+
 .close-button:hover {
     background-color: darkgray;
 }
@@ -65,13 +67,13 @@ ol {
     text-align: center;
 }
 
-.dot { 
+.dot {
     background: #ffffff;
     border: 1px solid black;
     border-radius: 50%;
     display: inline-block;
-    width:10px;
-    height:10px;
+    width: 10px;
+    height: 10px;
     cursor: pointer;
 }
 

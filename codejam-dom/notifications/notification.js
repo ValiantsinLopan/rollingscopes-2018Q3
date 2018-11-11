@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 const notificationModal = document.getElementById('notification-modal');
 const closeButton = document.getElementById('close');
 const disableCheckbox = document.getElementById('disable');
@@ -13,6 +12,7 @@ const tips = ['Lorem ipsum sem aptent eros aenean quisque class, ultricies lobor
   'Nibh sed conubia curae arcu faucibus nullam feugiat quisque, et dictum donec risus mauris sodales vestibulum quisque, aptent orci est ullamcorper dapibus tortor massa.',
   'Tempus velit risus euismod condimentum pretium cras proin dui iaculis, mollis taciti vitae proin luctus porttitor lorem lacus, blandit ante aptent odio eros vitae a risus.',
   'Erat integer lobortis ad fusce eu felis eget, blandit maecenas orci etiam platea a, turpis viverra donec ut ante nullam.',
+
   'Cursus leo ornare morbi venenatis nec sit himenaeos sociosqu imperdiet tempor ligula ac eu, nullam augue arcu odio dapibus quis interdum lacus non elit pulvinar.',
 ];
 
@@ -65,10 +65,11 @@ function switchToNextTip(addToPosition) {
 function onDotClick(event) {
   const currentNode = event.target;
   const childs = Array.from(currentNode.parentNode.childNodes).filter(n => n.tagName === 'LI');
-  for (i = 0; i < childs.length; i += 1) {
-    if (currentNode === childs[i]) break;
+  let index;
+  for (index = 0; index < childs.length; index += 1) {
+    if (currentNode === childs[index]) break;
   }
-  showTip(i);
+  showTip(index);
 }
 
 function onKeyDown(key) {
