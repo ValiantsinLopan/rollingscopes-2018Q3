@@ -13,7 +13,8 @@ const tips = ['Lorem ipsum sem aptent eros aenean quisque class, ultricies lobor
   'Nibh sed conubia curae arcu faucibus nullam feugiat quisque, et dictum donec risus mauris sodales vestibulum quisque, aptent orci est ullamcorper dapibus tortor massa.',
   'Tempus velit risus euismod condimentum pretium cras proin dui iaculis, mollis taciti vitae proin luctus porttitor lorem lacus, blandit ante aptent odio eros vitae a risus.',
   'Erat integer lobortis ad fusce eu felis eget, blandit maecenas orci etiam platea a, turpis viverra donec ut ante nullam.',
-  'Cursus leo ornare morbi venenatis nec sit himenaeos sociosqu imperdiet tempor ligula ac eu, nullam augue arcu odio dapibus quis interdum lacus non elit pulvinar.'];
+  'Cursus leo ornare morbi venenatis nec sit himenaeos sociosqu imperdiet tempor ligula ac eu, nullam augue arcu odio dapibus quis interdum lacus non elit pulvinar.',
+];
 
 function clearActiveFromDots() {
   for (let i = 0; i < dots.length; i += 1) {
@@ -60,6 +61,7 @@ function switchToNextTip(addToPosition) {
   }
   showTip(index);
 }
+
 function onDotClick(event) {
   const currentNode = event.target;
   const childs = Array.from(currentNode.parentNode.childNodes).filter(n => n.tagName === 'LI');
@@ -69,8 +71,25 @@ function onDotClick(event) {
   showTip(i);
 }
 
+function onKeyDown(key) {
+  switch (key.keyCode) {
+    case 39: // right arrow
+      switchToNextTip(1);
+      break;
+    case 37: // left arrow
+      switchToNextTip(-1);
+      break;
+    case 27: // Esc
+      onCloseNotifaication();
+      break;
+    default:
+      break;
+  }
+}
+
 closeButton.addEventListener('click', onCloseNotifaication);
 disableCheckbox.addEventListener('change', onCheckboxChange);
 nextArrow.addEventListener('click', () => { switchToNextTip(1); });
 prevArrow.addEventListener('click', () => { switchToNextTip(-1); });
 dotList.addEventListener('click', onDotClick);
+window.addEventListener('keydown', onKeyDown);
