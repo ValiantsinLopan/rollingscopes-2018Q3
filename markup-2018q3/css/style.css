@@ -262,10 +262,8 @@ ul li {
 
 .packages_items {
     margin: 0;
-    padding: 0;
-    padding-bottom: 99px;
-    display: -webkit-box;
-    display: -ms-flexbox;
+    padding: 0 0 99px 0;
+    display: flex;
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
@@ -309,8 +307,7 @@ ul li {
     position: relative;
     width: 53px;
     height: 53px;
-    margin: 0 auto;
-    margin-bottom: 21px;
+    margin: 0 auto 21px;
 }
 
 .infographics svg {
@@ -476,8 +473,6 @@ ul li {
 .about {
     margin-top: 100px;
     margin-bottom: 100px;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
@@ -522,8 +517,6 @@ ul li {
 .about_list {
     width: 600px;
     padding-top: 5px;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
@@ -545,7 +538,7 @@ ul li {
     height: 100px;
     border-radius: 100%;
     box-sizing: border-box;
-    border: 5px solid var(--black-15);
+    border: 5px solid #e5e5e5;
 }
 
 .about_name {
@@ -563,11 +556,8 @@ ul li {
 }
 
 .about_social {
-    margin: 0 auto;
-    margin-top: 12px;
+    margin: 12px auto 0;
     width: 98px;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: start;
     -ms-flex-pack: start;
@@ -655,8 +645,6 @@ input[type="radio"]:nth-of-type(1):checked~.comments_items .comments_item:nth-of
     padding-top: 4px;
     padding-bottom: 4px;
     width: 75px;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: center;
     -ms-flex-pack: center;
@@ -749,8 +737,6 @@ footer {
 
 .footer_top {
     padding: 22px 0 20px;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
@@ -771,8 +757,6 @@ footer {
 }
 
 .footer_nav {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
@@ -801,8 +785,6 @@ footer {
 }
 
 .footer_bottom {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
@@ -834,13 +816,8 @@ footer {
 }
 
 .footer_menu {
-    padding-top: 15px;
-    padding-bottom: 18px;
-    padding-left: 121px;
-    padding-right: 89px;
+    padding: 15px 89px 18px 121px;
     width: 505px;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
