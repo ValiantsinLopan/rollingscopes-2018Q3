@@ -20,6 +20,7 @@ input {
 a {
     cursor: pointer;
     text-decoration: none;
+    color: #121212;
 }
 
 button {
@@ -42,16 +43,15 @@ button {
 }
 
 #items {
-    max-width: 1200px;
+    max-width: 90%;
     margin: 0 auto;
-    padding: 20px 0;
-    height: 100%;
     display: flex;
+    overflow-x: auto;
 }
 
 .card {
     width: 320px;
-    margin: 0 auto;
+    margin: 20px;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
     background: #FF495F;
 }
@@ -70,11 +70,18 @@ button {
     color: #FFFFFF;
 }
 
+.discription {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    margin: 15px auto;
+}
+
 .info span{
     display: block;
 }
 .info, .title {
-    padding: 0 10px;
+    padding: 0 20px;
 }
 
 .info span :before {
