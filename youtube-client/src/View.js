@@ -10,7 +10,6 @@ export default class View {
   }
 
   renderBaseView() {
-    this.search.render();
     this.results.render();
   }
 

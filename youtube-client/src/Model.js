@@ -12,9 +12,8 @@ export default class Model {
     }
     const baseUrl = 'https://www.googleapis.com/youtube/v3/';
     const apiKey = 'AIzaSyCLAmbrmF9fPfKPqDlGvDXgnpFUZwB9BeQ';
-    const resultrsPerRequest = 3;
-    const pageToken = '';
-    fetch(`${baseUrl}search?key=${apiKey}&type=video&part=snippet&maxResults=${resultrsPerRequest}&q=${this.query}&pageToken=${pageToken}`)
+    const resultrsPerRequest = 5;
+    fetch(`${baseUrl}search?key=${apiKey}&type=video&part=snippet&maxResults=${resultrsPerRequest}&q=${this.query}&pageToken=${this.nextPageToken}`)
       .then(response => response.json())
       .then((response) => {
         console.log(response);
