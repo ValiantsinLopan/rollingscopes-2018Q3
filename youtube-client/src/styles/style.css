@@ -1,7 +1,14 @@
+* {
+    animation-fill-mode: forwards; 
+}
+
 body {
     background-color: #121212;
     font-size: 1rem;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Arial', sans-serif;
+    height: 95vh;
+    margin: 0;
+    padding: 2vh 0;
 }
 
 input {
@@ -31,9 +38,7 @@ button {
 }
 
 #continer {
-    display: flex;
     text-align: center;
-    font-family: 'Arial'
 }
 
 #searchBar {
@@ -42,18 +47,119 @@ button {
     background-color: #232323;
 }
 
+.carousel {
+    width: 100%;
+    position: relative;
+}
+
+.pagination-container {
+    left: 50%;
+    z-index: 1;
+    bottom: -1vh;
+    position: absolute;
+    transform: translateX(-50%);
+}
+
+.pagination-container:after {
+    content: '';
+    clear: both;
+    display: block;
+}
+
+.indicator {
+    float: left;
+    width: 10px;
+    height: 10px;
+    margin: 0 4px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: 0.3s border;
+    border: 1px solid #FF495F;
+}
+
+.indicator:first-child {
+    margin-left: 0;
+}
+
+.indicator:last-child {
+    margin-right: 0;
+}
+
+.indicator.active {
+    background: #FF495F
+}
+
+.viewport {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.button {
+    top: 50%;
+    z-index: 1;
+    width: 44px;
+    height: 44px;
+    opacity: 0.1;
+    cursor: pointer;
+    border-radius: 50%;
+    position: absolute;
+    transition: 0.1s all;
+    background-color: lightgray;
+    transform: translateY(-50%);
+}
+
+.previous {
+    left: 8px;
+}
+
+.previous.hidden {
+    visibility: hidden;
+}
+
+.next {
+    right: 8px;
+}
+
+.next.hidden {
+    visibility: hidden;
+}
+
+.button:hover {
+    opacity: 0.5;
+}
+
 #items {
-    max-width: 90%;
     margin: 0 auto;
-    display: flex;
-    overflow-x: auto;
+    left: 0;
+    position: relative;
+    display: block;
+}
+
+#items:after{
+    content: '';
+				clear: both;
+				display: block;
+}
+
+#items::-webkit-scrollbar {
+    display: none;
 }
 
 .card {
-    width: 320px;
-    margin: 20px;
+    max-width: 20vw;
+    height: 75vh;
+    margin-bottom: 0px;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
     background: #FF495F;
+    float: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card img{
+    border-radius: 10px 10px 0 0;
 }
 
 .thumbnail {
@@ -77,13 +183,38 @@ button {
     margin: 15px auto;
 }
 
-.info span{
+.info span {
     display: block;
 }
+
 .info, .title {
     padding: 0 20px;
 }
 
 .info span :before {
     padding-right: 10px;
+}
+
+@media only screen and (max-width: 1300px) {
+    .card {
+        max-width: 30vw;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .card {
+        max-width: 40vw;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .card {
+        max-width: 90vw;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .card {
+        max-width: 90vw;
+    }
 }
