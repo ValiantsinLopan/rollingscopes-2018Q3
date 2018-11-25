@@ -1,5 +1,5 @@
 export default class ResultItem {
-  render(data) {
+  constructor(data) {
     this.data = data;
     this.innerHtml = `<div class="card">
                           <a href="https://www.youtube.com/watch?v=${this.data.id}" target="_blank">

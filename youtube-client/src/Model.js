@@ -12,7 +12,7 @@ export default class Model {
     }
     const baseUrl = 'https://www.googleapis.com/youtube/v3/';
     const apiKey = 'AIzaSyCLAmbrmF9fPfKPqDlGvDXgnpFUZwB9BeQ';
-    const resultrsPerRequest = 5;
+    const resultrsPerRequest = 15;
     fetch(`${baseUrl}search?key=${apiKey}&type=video&part=snippet&maxResults=${resultrsPerRequest}&q=${this.query}&pageToken=${this.nextPageToken}`)
       .then(response => response.json())
       .then((response) => {
@@ -22,7 +22,7 @@ export default class Model {
           .then(result => result.json())
           .then((data) => {
             this.results.push(data.items);
-            callback(data.items);
+            callback(data);
           })
           .catch(err => console.error(err));
       });
