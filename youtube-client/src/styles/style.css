@@ -136,16 +136,6 @@ button {
     display: block;
 }
 
-#items:after{
-    content: '';
-				clear: both;
-				display: block;
-}
-
-#items::-webkit-scrollbar {
-    display: none;
-}
-
 .card {
     max-width: 20vw;
     height: 75vh;
