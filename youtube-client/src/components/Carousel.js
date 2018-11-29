@@ -21,14 +21,27 @@ export default class Carousel {
     this.hideAndDisplayButtons();
     this.generatePagination();
 
-    this.nextButton.addEventListener('click', e => this.handleNavButtonClick(e));
-    this.previousButton.addEventListener('click', e => this.handleNavButtonClick(e));
+    this.nextButton.addEventListener('click', e => this.handleNext(e));
+    this.previousButton.addEventListener('click', e => this.handlePrevious(e));
+
+    this.initSwipe();
   }
 
   update() {
     this.setDimensions();
     this.hideAndDisplayButtons();
     this.generatePagination();
+  }
+
+  resize() {
+    const activeCardIndex = document.querySelector('.card.active').getAttribute('data-index');
+    this.currentPage = Math.floor(activeCardIndex / this.columnsPerPage);
+    console.log(this.currentPage);
+    this.setDimensions();
+    this.hideAndDisplayButtons();
+    this.generatePagination();
+    const fromX = this.slider.getBoundingClientRect().left;
+    this.animateCarousel(fromX, -(-(document.querySelector('.card.active').style.offsetLeft - this.cardMargin)));
   }
 
   setDimensions() {
@@ -39,8 +52,9 @@ export default class Carousel {
 
     const cardsWidh = this.card.offsetWidth * this.columnsPerPage;
     this.cardMargin = ((this.viewport.offsetWidth - cardsWidh) / (2 * this.columnsPerPage));
-    this.cards.forEach((e) => {
-      e.style.margin = `${this.cardMargin}px`;
+    this.cards.forEach((card, index) => {
+      card.setAttribute('data-index', `${index}`);
+      card.style.margin = `${this.cardMargin}px`;
     });
     this.slider.style.width = `${this.pageCount * this.viewportWidth}px`;
   }
@@ -74,10 +88,12 @@ export default class Carousel {
   updatePagination() {
     const indicators = document.getElementsByClassName('indicator');
     const activeIndicator = document.querySelector('.indicator.active');
+    const activeCard = document.querySelector('.card.active');
 
     activeIndicator.classList.remove('active');
     indicators[this.currentPage].classList.add('active');
-    this.cards[this.currentPage * this.columnsPerPage].classList.add('active');
+
+    if (activeCard === null) this.cards[this.currentPage * this.columnsPerPage].classList.add('active');
 
     this.hideAndDisplayButtons();
   }
@@ -106,26 +122,17 @@ export default class Carousel {
     this.animateCarousel(fromX, -(leftStyle - this.cardMargin));
 
     this.hideAndDisplayButtons();
+    this.checkForLoadMore();
   }
 
-  handleNavButtonClick(e) {
-    console.log('handle click');
-    const clickedButton = e.target;
+  handleNext() {
     const fromX = this.slider.getBoundingClientRect().left;
     console.log(this.currentPage);
     this.cards[this.currentPage * this.columnsPerPage].classList.remove('active');
-    if (clickedButton.classList.contains('next')) {
-      this.currentPage = this.currentPage + 1 >= this.pageCount
-        ? this.pageCount - 1
-        : this.currentPage + 1;
-    }
-
-    if (clickedButton.classList.contains('previous')) {
-      this.currentPage = this.currentPage - 1 < 0
-        ? 0
-        : this.currentPage - 1;
-    }
-    console.log(this.currentPage);
+    this.currentPage = this.currentPage + 1 >= this.pageCount
+      ? this.pageCount - 1
+      : this.currentPage + 1;
+    this.checkForLoadMore();
     this.cards[this.currentPage * this.columnsPerPage].classList.add('active');
     const leftStyle = document.querySelector('.card.active').offsetLeft;
 
@@ -133,6 +140,67 @@ export default class Carousel {
 
     this.hideAndDisplayButtons();
     this.updatePagination();
+  }
+
+  handlePrevious() {
+    const fromX = this.slider.getBoundingClientRect().left;
+    console.log(this.currentPage);
+    this.cards[this.currentPage * this.columnsPerPage].classList.remove('active');
+    this.currentPage = this.currentPage - 1 < 0
+      ? 0
+      : this.currentPage - 1;
+    this.checkForLoadMore();
+    this.cards[this.currentPage * this.columnsPerPage].classList.add('active');
+    const leftStyle = document.querySelector('.card.active').offsetLeft;
+
+    this.animateCarousel(fromX, -(leftStyle - this.cardMargin));
+
+    this.hideAndDisplayButtons();
+    this.updatePagination();
+  }
+
+  initSwipe() {
+    const container = document.querySelector('.viewport');
+    container.addEventListener('mousedown', e => this.startSwipe(e), false);
+    container.addEventListener('touchstart', e => this.startSwipe(e), false);
+
+    container.addEventListener('mouseup', e => this.endSwipe(e), false);
+    container.addEventListener('touchend', e => this.endSwipe(e), false);
+
+    /*container.addEventListener('mousemove', e => this.swipeInProgress(e));
+    container.addEventListener('touchmove', e => this.swipeInProgress(e));*/
+  }
+
+  startSwipe(e) {
+    this.initialPosition = e.clientX;
+  }
+
+  endSwipe(e) {
+    if (this.initialPosition || this.initialPosition === 0) {
+      const swipeLenth = e.clientX - this.initialPosition;
+      console.log(`${swipeLenth}`);
+      const action = -Math.sign(swipeLenth);
+      if (action < 0) {
+        this.handlePrevious();
+      } else if (action > 0) {
+        this.handleNext();
+      }
+    }
+
+    delete this.initialPosition;
+  }
+
+  swipeInProgress(e) {
+    e.preventDefault();
+    if (this.initialPosition || this.initialPosition === 0) {
+      const swipeLength = -Math.round(e.clientX - this.initialPosition);
+      if ((swipeLength < 0 && this.currentPage > 1)
+        || (swipeLength > 0 && this.currentPage < this.pageCount)) {
+        const initialTransformValue = -1 * this.viewportWidth * (this.currentPage - 1);
+        this.viewport.style.width = `calc(${this.currentPage * this.viewportWidth + swipeLength}px)`;
+        this.viewport.style.transform = `translateX(${initialTransformValue - swipeLength}px)`;
+      }
+    }
   }
 
   animateCarousel(from, to) {
@@ -143,5 +211,10 @@ export default class Carousel {
       duration: this.animationDuration,
       fill: 'forwards',
     });
+  }
+
+  checkForLoadMore() {
+    console.log(`Page ${this.currentPage} of ${this.pageCount}`);
+    if (this.currentPage > this.pageCount - 3) window.dispatchEvent(new Event('loadMore'));
   }
 }

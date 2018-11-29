@@ -19,13 +19,12 @@ export default class ResultsGrid {
   }
 
   clear() {
-    this.list = document.querySelector('.carousel');
-    if (this.list === null) {
+    this.container = document.getElementById('container');
+    this.carousel = document.querySelector('.carousel');
+    if (this.carousel === null) {
       return;
     }
-    while (this.list.firstChild) {
-      this.list.removeChild(this.list.firstChild);
-    }
+    this.container.removeChild(this.container.lastChild);
   }
 
   // eslint-disable-next-line class-methods-use-this
