@@ -5,14 +5,15 @@ export default class Model {
     this.results = [];
   }
 
-  getResults(searchQuery, callback) {
+  getResults(searchQuery, newInput = false, callback) {
     if (searchQuery !== this.query) {
       this.nextPageToken = '';
       this.query = searchQuery;
     }
+    if (newInput) this.nextPageToken = '';
     const baseUrl = 'https://www.googleapis.com/youtube/v3/';
     const apiKey = 'AIzaSyCLAmbrmF9fPfKPqDlGvDXgnpFUZwB9BeQ';
-    const resultrsPerRequest = 15;
+    const resultrsPerRequest = 10;
     fetch(`${baseUrl}search?key=${apiKey}&type=video&part=snippet&maxResults=${resultrsPerRequest}&q=${this.query}&pageToken=${this.nextPageToken}`)
       .then(response => response.json())
       .then((response) => {
