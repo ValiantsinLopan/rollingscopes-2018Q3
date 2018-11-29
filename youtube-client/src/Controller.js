@@ -13,38 +13,41 @@ export default class Controller {
   handleSeachInput(e) {
     const key = e.which || e.keyCode;
     if (key === 13) {
-      if (e.target.value === this.searchQuery) {
-        console.log('update!');
-        this.model.getResults(e.target.value,
-          (data) => {
-            this.view.results.renderResultsItems(data.items);
-            this.carousel.update();
-            this.searchResults.push(...data.items);
-          });
-        return;
-      }
-      this.searchQuery = e.target.value;
-      this.view.results.clear();
-      this.view.results.render();
-      this.model.getResults(e.target.value,
-        (data) => {
-          this.view.results.renderResultsItems(data.items);
-          this.carousel = new Carousel();
-          this.carousel.init();
-          this.searchResults.push(...data.items);
-        });
-      window.addEventListener('resize',
-        () => {
-          console.log('resize');
-          this.carousel = new Carousel();
-          this.carousel.init();
-        });
+      this.processSearch(e.target.value);
     }
   }
 
   handleSearchButton() {
-    this.model.getResults(this.view.search.input.value,
-      data => this.view.results.initCarousel(data.items));
+    this.processSearch(this.view.search.input.value);
+  }
+
+  processSearch(query) {
+    this.view.results.clear();
+    this.view.results.render();
+    this.model.getResults(query, true,
+      (data) => {
+        this.view.results.renderResultsItems(data.items);
+        this.carousel = null;
+        this.carousel = new Carousel();
+        this.carousel.init();
+      });
+
+    window.addEventListener('loadMore', () => { this.handleLoadMore(); });
+    window.addEventListener('resize', () => { this.handleResize(); });
+  }
+
+  handleLoadMore() {
+    this.model.getResults(this.searchQuery, false,
+      (data) => {
+        this.view.results.renderResultsItems(data.items);
+        this.carousel.update();
+      });
+  }
+
+  handleResize() {
+    console.log('resize');
+    this.carousel = new Carousel();
+    this.carousel.resize();
   }
 
   start() {
