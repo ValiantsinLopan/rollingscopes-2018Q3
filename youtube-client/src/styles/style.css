@@ -10,20 +10,30 @@ body {
     margin: 0;
     padding: 2vh 0;
 }
-
 input {
     font-size: 16px;
     font-weight: 400;
     vertical-align: middle;
     margin: 1rem 0;
-    min-width: 640px;
     line-height: 24px;
-    background-color: #121212;
     border: none;
+    text-indent: 1rem;
+}
+
+input#search {
+    min-width: 70vw;
+    line-height: 24px;
+    background: #121212;
     color: #D9D9D9;
     text-indent: 1rem;
 }
 
+#searchButton {
+    width: 50px;
+    background: #FF495F;
+    color: #121212;
+    border: none;
+}
 a {
     cursor: pointer;
     text-decoration: none;
@@ -46,7 +56,6 @@ button {
     text-align: center;
     background-color: #232323;
 }
-
 .carousel {
     width: 100%;
     position: relative;
@@ -139,6 +148,7 @@ button {
 .card {
     max-width: 20vw;
     height: 75vh;
+    max-height: 75vh;
     margin-bottom: 0px;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
     border-radius: 10px;
