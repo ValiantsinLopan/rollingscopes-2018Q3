@@ -160,25 +160,25 @@ export default class Carousel {
   }
 
   initSwipe() {
-    const container = document.querySelector('.viewport');
-    container.addEventListener('mousedown', e => this.startSwipe(e), false);
-    container.addEventListener('touchstart', e => this.startSwipe(e), false);
+    const viewport = document.querySelector('.viewport');
+    viewport.addEventListener('mousedown', e => this.startSwipe(e), false);
+    viewport.addEventListener('touchstart', e => this.startSwipe(e), false);
 
-    container.addEventListener('mouseup', e => this.endSwipe(e), false);
-    container.addEventListener('touchend', e => this.endSwipe(e), false);
+    viewport.addEventListener('mouseup', e => this.endSwipe(e), false);
+    viewport.addEventListener('touchend', e => this.endSwipe(e), false);
 
-    /*container.addEventListener('mousemove', e => this.swipeInProgress(e));
-    container.addEventListener('touchmove', e => this.swipeInProgress(e));*/
+    viewport.addEventListener('mousemove', e => this.swipeInProgress(e));
+    viewport.addEventListener('touchmove', e => this.swipeInProgress(e));
   }
 
   startSwipe(e) {
-    this.initialPosition = e.clientX;
+    this.startX = e.pageX;
+    this.scrollLeft = this.slider.scrollLeft;
   }
 
   endSwipe(e) {
-    if (this.initialPosition || this.initialPosition === 0) {
-      const swipeLenth = e.clientX - this.initialPosition;
-      console.log(`${swipeLenth}`);
+    if (this.startX || this.startX === 0) {
+      const swipeLenth = e.pageX - this.startX;
       const action = -Math.sign(swipeLenth);
       if (action < 0) {
         this.handlePrevious();
@@ -187,19 +187,15 @@ export default class Carousel {
       }
     }
 
-    delete this.initialPosition;
+    delete this.startX;
   }
 
   swipeInProgress(e) {
     e.preventDefault();
-    if (this.initialPosition || this.initialPosition === 0) {
-      const swipeLength = -Math.round(e.clientX - this.initialPosition);
-      if ((swipeLength < 0 && this.currentPage > 1)
-        || (swipeLength > 0 && this.currentPage < this.pageCount)) {
-        const initialTransformValue = -1 * this.viewportWidth * (this.currentPage - 1);
-        this.viewport.style.width = `calc(${this.currentPage * this.viewportWidth + swipeLength}px)`;
-        this.viewport.style.transform = `translateX(${initialTransformValue - swipeLength}px)`;
-      }
+    if (this.startX || this.startX === 0) {
+      const fromX = e.pageX - this.slider.offsetLeft;
+      const swipeLength = fromX - this.startX;
+      this.slider.scrollLeft = this.scrollLeft - swipeLength;
     }
   }
 
