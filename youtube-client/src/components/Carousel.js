@@ -51,7 +51,7 @@ export default class Carousel {
     this.pageCount = Math.ceil(this.cardsCount / this.columnsPerPage);
 
     const cardsWidh = this.card.offsetWidth * this.columnsPerPage;
-    this.cardMargin = ((this.viewport.offsetWidth - cardsWidh) / (2 * this.columnsPerPage));
+    this.cardMargin = ((this.viewport.offsetWidth - cardsWidh) / (2 * this.columnsPerPage) - 1);
     this.cards.forEach((card, index) => {
       card.setAttribute('data-index', `${index}`);
       card.style.margin = `${this.cardMargin}px`;
