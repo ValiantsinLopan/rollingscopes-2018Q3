@@ -35,9 +35,7 @@ export default class Carousel {
 
   resize() {
     const activeCardIndex = document.querySelector('.card.active').getAttribute('data-index');
-    console.log(`colunns per page : ${this.columnsPerPage}`);
     this.currentPage = Math.ceil((Number(activeCardIndex) + 1) / this.columnsPerPage) - 1;
-    console.log(`New page indexs: ${this.currentPage}`);
     this.setDimensions();
     const active = document.querySelector('.card.active');
     active.classList.remove('active');
@@ -67,6 +65,7 @@ export default class Carousel {
     this.cardMargin = ((this.viewport.offsetWidth - cardsWidh) / (2 * this.columnsPerPage) - 1);
     this.cards.forEach((card, index) => {
       card.setAttribute('data-index', `${index}`);
+      // eslint-disable-next-line no-param-reassign
       card.style.margin = `${this.cardMargin}px`;
     });
     this.slider.style.width = `${this.pageCount * this.viewportWidth}px`;
@@ -146,9 +145,7 @@ export default class Carousel {
   }
 
   handleNext() {
-    console.log('Handle next');
     const fromX = this.slider.getBoundingClientRect().left;
-    console.log(`page: ${this.currentPage} of ${this.pageCount}`);
     document.querySelector('.card.active').classList.remove('active');
     this.currentPage = this.currentPage + 1 >= this.pageCount
       ? this.pageCount - 1
@@ -166,7 +163,6 @@ export default class Carousel {
 
   handlePrevious() {
     const fromX = this.slider.getBoundingClientRect().left;
-    console.log(this.currentPage);
     this.cards[this.currentPage * this.columnsPerPage].classList.remove('active');
     this.currentPage = this.currentPage - 1 < 0
       ? 0
@@ -230,8 +226,6 @@ export default class Carousel {
   }
 
   animateCarousel(from, to) {
-    console.log(`fromX: ${from}`);
-    console.log(`to: ${to}`);
     this.slider.animate({
       left: [`${from}px`, `${to}px`],
     },
@@ -242,12 +236,10 @@ export default class Carousel {
   }
 
   checkForLoadMore() {
-    console.log(`Page ${this.currentPage} of ${this.pageCount}`);
     if (this.currentPage > this.pageCount - 3) window.dispatchEvent(new Event('loadMore'));
   }
 
   destroyHandlers() {
-    console.log('remove handlers');
     const old = this.viewport;
     const newNode = old.cloneNode(true);
     old.parentNode.replaceChild(newNode, old);

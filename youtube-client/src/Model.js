@@ -2,7 +2,6 @@ export default class Model {
   constructor() {
     this.query = '';
     this.nextPageToken = '';
-    this.results = [];
   }
 
   getResults(searchQuery, newInput = false, callback) {
@@ -17,12 +16,10 @@ export default class Model {
     fetch(`${baseUrl}search?key=${apiKey}&type=video&part=snippet&maxResults=${resultrsPerRequest}&q=${this.query}&pageToken=${this.nextPageToken}`)
       .then(response => response.json())
       .then((response) => {
-        console.log(response);
         this.nextPageToken = response.nextPageToken;
         fetch(`${baseUrl}videos?key=${apiKey}&id=${response.items.map(i => i.id.videoId).join(',')}&part=snippet,statistics`)
           .then(result => result.json())
           .then((data) => {
-            this.results.push(data.items);
             callback(data);
           })
           .catch(err => console.error(err));

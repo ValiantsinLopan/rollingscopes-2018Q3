@@ -6,7 +6,6 @@ export default class Controller {
   constructor() {
     this.model = new Model();
     this.view = new View();
-    this.searchResults = [];
     this.searchQuery = '';
   }
 
@@ -46,7 +45,6 @@ export default class Controller {
   }
 
   handleResize() {
-    console.log('resize');
     this.carousel.destroyHandlers();
     this.carousel = new Carousel();
     this.carousel.resize();
