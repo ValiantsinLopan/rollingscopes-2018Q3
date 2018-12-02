@@ -11,6 +11,9 @@ export default class ResultsGrid {
                             <div class="button previous hidden"></div>
                             <div id="items"></div>
                         </div>
+                        <div class="page-counter">
+                            <span>Page: <span id="current-page"></span><span> of </span><span id="total-page"></span></span>
+                        </div>
                       </div>`;
   }
 

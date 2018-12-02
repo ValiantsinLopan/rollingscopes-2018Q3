@@ -108,6 +108,9 @@ export default class Carousel {
 
     if (activeCard === null) this.cards[this.currentPage * this.columnsPerPage].classList.add('active');
 
+    document.getElementById('current-page').textContent = this.currentPage + 1;
+    document.getElementById('total-page').textContent = this.pageCount;
+
     this.hideAndDisplayButtons();
   }
 
@@ -133,6 +136,10 @@ export default class Carousel {
     const leftStyle = document.querySelector('.card.active').offsetLeft;
 
     this.animateCarousel(fromX, -(leftStyle - this.cardMargin));
+
+
+    document.getElementById('current-page').textContent = this.currentPage + 1;
+    document.getElementById('total-page').textContent = this.pageCount;
 
     this.hideAndDisplayButtons();
     this.checkForLoadMore();
