@@ -187,13 +187,13 @@ export default class Carousel {
   }
 
   startSwipe(e) {
-    this.startX = e.pageX;
+    this.startX = this.unifySwipe(e).pageX;
     this.scrollLeft = this.slider.scrollLeft;
   }
 
   endSwipe(e) {
     if (this.startX || this.startX === 0) {
-      const swipeLenth = e.pageX - this.startX;
+      const swipeLenth = this.unifySwipe(e).pageX - this.startX;
       const action = -Math.sign(swipeLenth);
       if (action < 0) {
         this.handlePrevious();
@@ -208,10 +208,18 @@ export default class Carousel {
   swipeInProgress(e) {
     e.preventDefault();
     if (this.startX || this.startX === 0) {
-      const fromX = e.pageX - this.slider.offsetLeft;
+      const fromX = this.unifySwipe(e).pageX - this.slider.offsetLeft;
       const swipeLength = fromX - this.startX;
       this.slider.scrollLeft = this.scrollLeft - swipeLength;
     }
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  unifySwipe(e) {
+    if (e.changedTouches) {
+      return e.changedTouches[0];
+    }
+    return e;
   }
 
   animateCarousel(from, to) {
