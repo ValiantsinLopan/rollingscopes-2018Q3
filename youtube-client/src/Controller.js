@@ -24,6 +24,7 @@ export default class Controller {
   processSearch(query) {
     this.view.results.clear();
     this.view.results.render();
+    this.searchQuery = query;
     this.model.getResults(query, true,
       (data) => {
         this.view.results.renderResultsItems(data.items);
@@ -46,6 +47,7 @@ export default class Controller {
 
   handleResize() {
     console.log('resize');
+    this.carousel.destroyHandlers();
     this.carousel = new Carousel();
     this.carousel.resize();
   }

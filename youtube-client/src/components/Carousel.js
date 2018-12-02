@@ -21,8 +21,8 @@ export default class Carousel {
     this.hideAndDisplayButtons();
     this.generatePagination();
 
-    this.nextButton.addEventListener('click', e => this.handleNext(e));
-    this.previousButton.addEventListener('click', e => this.handlePrevious(e));
+    this.nextButton.addEventListener('click', e => this.handleNext(e), false);
+    this.previousButton.addEventListener('click', e => this.handlePrevious(e), false);
 
     this.initSwipe();
   }
@@ -35,13 +35,26 @@ export default class Carousel {
 
   resize() {
     const activeCardIndex = document.querySelector('.card.active').getAttribute('data-index');
-    this.currentPage = Math.floor(activeCardIndex / this.columnsPerPage);
-    console.log(this.currentPage);
+    console.log(`colunns per page : ${this.columnsPerPage}`);
+    this.currentPage = Math.ceil((Number(activeCardIndex) + 1) / this.columnsPerPage) - 1;
+    console.log(`New page indexs: ${this.currentPage}`);
     this.setDimensions();
+    const active = document.querySelector('.card.active');
+    active.classList.remove('active');
+    this.cards[this.currentPage * this.columnsPerPage].classList.add('active');
+
     this.hideAndDisplayButtons();
     this.generatePagination();
+
     const fromX = this.slider.getBoundingClientRect().left;
-    this.animateCarousel(fromX, -(-(document.querySelector('.card.active').style.offsetLeft - this.cardMargin)));
+    const activeCardLeftStyle = document.querySelector('.card.active').offsetLeft;
+    this.animateCarousel(fromX, -(activeCardLeftStyle - this.cardMargin));
+
+
+    this.nextButton.addEventListener('click', e => this.handleNext(e), false);
+    this.previousButton.addEventListener('click', e => this.handlePrevious(e), false);
+
+    this.initSwipe();
   }
 
   setDimensions() {
@@ -88,8 +101,8 @@ export default class Carousel {
   updatePagination() {
     const indicators = document.getElementsByClassName('indicator');
     const activeIndicator = document.querySelector('.indicator.active');
-    const activeCard = document.querySelector('.card.active');
 
+    const activeCard = document.querySelector('.card.active');
     activeIndicator.classList.remove('active');
     indicators[this.currentPage].classList.add('active');
 
@@ -126,13 +139,14 @@ export default class Carousel {
   }
 
   handleNext() {
+    console.log('Handle next');
     const fromX = this.slider.getBoundingClientRect().left;
-    console.log(this.currentPage);
-    this.cards[this.currentPage * this.columnsPerPage].classList.remove('active');
+    console.log(`page: ${this.currentPage} of ${this.pageCount}`);
+    document.querySelector('.card.active').classList.remove('active');
     this.currentPage = this.currentPage + 1 >= this.pageCount
       ? this.pageCount - 1
       : this.currentPage + 1;
-    this.checkForLoadMore();
+
     this.cards[this.currentPage * this.columnsPerPage].classList.add('active');
     const leftStyle = document.querySelector('.card.active').offsetLeft;
 
@@ -140,6 +154,7 @@ export default class Carousel {
 
     this.hideAndDisplayButtons();
     this.updatePagination();
+    this.checkForLoadMore();
   }
 
   handlePrevious() {
@@ -149,7 +164,6 @@ export default class Carousel {
     this.currentPage = this.currentPage - 1 < 0
       ? 0
       : this.currentPage - 1;
-    this.checkForLoadMore();
     this.cards[this.currentPage * this.columnsPerPage].classList.add('active');
     const leftStyle = document.querySelector('.card.active').offsetLeft;
 
@@ -157,6 +171,7 @@ export default class Carousel {
 
     this.hideAndDisplayButtons();
     this.updatePagination();
+    this.checkForLoadMore();
   }
 
   initSwipe() {
@@ -200,6 +215,8 @@ export default class Carousel {
   }
 
   animateCarousel(from, to) {
+    console.log(`fromX: ${from}`);
+    console.log(`to: ${to}`);
     this.slider.animate({
       left: [`${from}px`, `${to}px`],
     },
@@ -212,5 +229,12 @@ export default class Carousel {
   checkForLoadMore() {
     console.log(`Page ${this.currentPage} of ${this.pageCount}`);
     if (this.currentPage > this.pageCount - 3) window.dispatchEvent(new Event('loadMore'));
+  }
+
+  destroyHandlers() {
+    console.log('remove handlers');
+    const old = this.viewport;
+    const newNode = old.cloneNode(true);
+    old.parentNode.replaceChild(newNode, old);
   }
 }
