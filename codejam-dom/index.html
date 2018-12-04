@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Notification codejam</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="notifications/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+</head>
+<body>
+    <main>
+        <section>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+        </section>
+        <div class="notification" id="notification-modal">
+            <div class="content">
+                <span class="close-button" id="close"><i class="far fa-window-close fa-lg"></i></span>
+                <div class="tip-container">
+                    <h4>Email tip of the day</h4>
+                    <p class="tip" id="tip">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                            Ut enim ad minim veniam, quis nostrud exercitation</p>
+                </div>
+                <div class="navigation-bar">
+                    <div class="disable-tips">
+                        <input type="checkbox" name="disable-chechbox" id="disable">
+                        <label for="disable">Disable Tips</label>
+                    </div>
+                    <div class="navigation" id="nav">
+                        <a class="prev arrow" id="prev" role="button"><i class="fas fa-angle-left fa-lg"></i></a>
+                        <ol class="dot-list" id="dots">
+                            <li class="dot"></li>
+                            <li class="dot"></li>
+                            <li class="dot"></li>
+                            <li class="dot"></li>
+                            <li class="dot"></li>
+                            <li class="dot"></li>
+                        </ol>
+                        <a class="next arrow" id="next" role="button"><i class="fas fa-angle-right fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="./notifications/notification.js"></script>
+</body>
+</html>
