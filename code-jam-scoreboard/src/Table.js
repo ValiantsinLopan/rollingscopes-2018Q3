@@ -49,6 +49,8 @@ export default class Table {
         const time = this.getTime(solution);
         totalTime += Number(time);
         cell.classList.add(this.getColor(solution));
+        cell.classList.add('tooltip');
+        cell.setAttribute('data-tooltip', this.getTooltipValue(solution));
         cell.innerText = time;
         row.appendChild(cell);
       });
@@ -76,5 +78,10 @@ export default class Table {
     if (solution === undefined) { return 'incorrect'; }
     if (solution.correct === 'Correct') { return 'correct'; }
     return 'incorrect';
+  }
+
+  getTooltipValue(solution) {
+    if (solution === undefined) { return ''; }
+    return solution.code;
   }
 }
