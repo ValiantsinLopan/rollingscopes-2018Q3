@@ -36,6 +36,10 @@ export default class Table {
   }
 
   renderRows() {
+    if (this.session.rounds.length === 0) {
+      document.querySelector('table').innerText = 'There no played rounds in selected session!';
+      return;
+    }
     Object.keys(this.session.rounds[0].solutions).forEach((p) => {
       const tableBody = document.querySelector('tbody');
       const row = document.createElement('tr');
