@@ -10,6 +10,7 @@ export default class Controller {
   }
 
   handleSeachInput(e) {
+    if (e.target.value === '') return;
     const key = e.which || e.keyCode;
     if (key === 13) {
       this.processSearch(e.target.value);
@@ -17,6 +18,7 @@ export default class Controller {
   }
 
   handleSearchButton() {
+    if (this.view.search.input.value === '') return;
     this.processSearch(this.view.search.input.value);
   }
 
