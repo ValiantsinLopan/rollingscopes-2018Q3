@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './index.css';
 import Home from './screens/home/home';
-import Battle from './screens/battle/battle';
+import Battle from './screens/battle';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
