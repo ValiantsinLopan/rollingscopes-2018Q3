@@ -26,14 +26,14 @@ class Home extends Component {
               variant="outlined"
               color="primary"
               size="large"
-              href="./game"
+              href="/game"
               style={
-                {
-                  margin: '10px 0 0 0',
+                  {
+                    margin: '10px 0 0 0',
+                  }
                 }
-              }
             >
-              Play now!
+                Play now!
             </Button>
           </Flex>
         </Flex>
