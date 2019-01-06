@@ -16,7 +16,7 @@ class ScoreBar extends Component {
               <Score />
             </Grid>
             <Grid item xs>
-              <Typography variant="h4" gutterBottom>
+              <Typography className={classes.vs} variant="h4" gutterBottom>
               VS.
               </Typography>
             </Grid>
@@ -33,6 +33,11 @@ class ScoreBar extends Component {
 const styles = {
   scoreBar: {
     textAlign: 'center',
+  },
+  vs: {
+    position: 'relative',
+    top: '50%',
+    transform: 'translateY(-50%)',
   },
 };
 
