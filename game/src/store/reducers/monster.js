@@ -1,5 +1,5 @@
 export const initialState = {
-  name: 'Unknown Monster',
+  name: 'Unknown monster',
   score: 100,
 };
 

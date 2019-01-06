@@ -7,6 +7,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { connect } from 'react-redux';
+import { setIsLoginActive } from '../store/actions/page';
 import { setName } from '../store/actions/user';
 
 class PlayerNameInput extends Component {
@@ -24,20 +25,19 @@ class PlayerNameInput extends Component {
   }
 
   handleStart() {
-    console.log(this.state.username);
     const name = this.state.username;
+    this.props.setIsLoginActive(false);
     this.props.setName(name);
   }
 
-
   render() {
+    const { isOpen } = this.props;
     return (
       <Dialog
-        open
+        open={isOpen}
         onClose={this.handleClose}
-        aria-labelledby="form-dialog-title"
       >
-        <DialogTitle id="form-dialog-title">Enter your name</DialogTitle>
+        <DialogTitle>Enter your name</DialogTitle>
         <DialogContent>
           <DialogContentText>
             To start game enter your name.
@@ -65,7 +65,10 @@ class PlayerNameInput extends Component {
 export default connect(
   store => ({
     name: store.user.name,
-  }), {
+    isOpen: store.page.isLoginActive,
+  }),
+  {
+    setIsLoginActive,
     setName,
-  } 
+  },
 )(PlayerNameInput);

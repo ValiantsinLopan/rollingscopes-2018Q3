@@ -1,6 +1,6 @@
 export const initialState = {
   name: 'Unknown user',
-  score: 0,
+  score: 100,
 };
 
 export function userReducer(state = initialState, action) {
