@@ -23,11 +23,11 @@ class TaskModal extends Component {
   }
 
   handleChange(e) {
-    this.setState({ answer: e.target.value });
+    this.setState({ answer: e.target.value.toLowerCase() });
   }
 
   handleAnswer() {
-    const scoreDelta = 50;
+    const scoreDelta = 15;
     if (this.state.answer === this.props.expectedAnswer) {
       if (this.props.isAttack) {
         const newMonsterScore = this.props.monsterScore - scoreDelta;

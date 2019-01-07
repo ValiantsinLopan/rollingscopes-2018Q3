@@ -37,7 +37,8 @@ class SelectSpellModal extends Component {
   }
 
   handleSelectSpell(event) {
-    const taskType = event.currentTarget.getAttribute('type');
+    const taskType = event.currentTarget.getAttribute('value');
+    console.log(taskType);
     this.props.getTask(taskType);
     this.props.setIsSelectSpellActive(false);
     this.props.setIsTaskActive(true);
@@ -73,10 +74,10 @@ class SelectSpellModal extends Component {
             </RadioGroup>
           </FormControl>
           <List>
-            <ListItem button onClick={this.handleSelectSpell} type="arithmetic">
+            <ListItem button onClick={this.handleSelectSpell} value="arithmetic">
               <ListItemText primary="Arithmetic" />
             </ListItem>
-            <ListItem button onClick={this.handleSelectSpell} type="translation">
+            <ListItem button onClick={this.handleSelectSpell} value="translation">
               <ListItemText primary="Translation" />
             </ListItem>
           </List>
