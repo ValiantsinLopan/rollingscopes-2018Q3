@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import ScoreBar from '../components/ScoreBar/ScoreBar';
-import GameField from '../components/GameField/GameField';
+import GameField from '../components/GameField';
 import PlayerNameInput from '../components/PlayerNameInput';
+import SelectSpellModal from '../components/SelectSpellModal';
+import TaskModal from '../components/TaskModal';
 
 class Battle extends Component {
   render() {
@@ -12,6 +14,8 @@ class Battle extends Component {
         <ScoreBar />
         <GameField />
         <PlayerNameInput />
+        <SelectSpellModal />
+        <TaskModal />
       </div>
     );
   }

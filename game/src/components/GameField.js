@@ -2,11 +2,22 @@ import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import { connect } from 'react-redux';
+import { setIsSelectSpellActive } from '../store/actions/page';
 import coridor from './images/coridor.jpg';
 import boo from './images/boo.png';
 import monster from './images/monster.png';
 
 class GameField extends Component {
+  constructor(props) {
+    super(props);
+    this.handleSelectSpellClick = this.handleSelectSpellClick.bind(this);
+  }
+
+  handleSelectSpellClick() {
+    this.props.setIsSelectSpellActive(true);
+  }
+
   render() {
     const { classes } = this.props;
     return (
@@ -20,7 +31,7 @@ class GameField extends Component {
             <img src={monster} alt="monster" className={classes.photo} />
           </Grid>
         </Grid>
-        <Button variant="contained" size="large" color="primary">
+        <Button variant="contained" size="large" color="primary" onClick={this.handleSelectSpellClick}>
           Select spell
         </Button>
       </div>
@@ -48,4 +59,11 @@ const styles = {
   },
 };
 
-export default withStyles(styles)(GameField);
+export default connect(
+  store => ({
+    isOpen: store.page.isSelectSpellActive,
+  }),
+  {
+    setIsSelectSpellActive,
+  },
+)(withStyles(styles)(GameField));

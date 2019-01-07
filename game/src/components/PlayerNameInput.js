@@ -35,7 +35,6 @@ class PlayerNameInput extends Component {
     return (
       <Dialog
         open={isOpen}
-        onClose={this.handleClose}
       >
         <DialogTitle>Enter your name</DialogTitle>
         <DialogContent>
