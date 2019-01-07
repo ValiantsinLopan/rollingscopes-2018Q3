@@ -8,7 +8,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { connect } from 'react-redux';
 import { setIsLoginActive } from '../store/actions/page';
-import { setName } from '../store/actions/user';
+import { setUserName } from '../store/actions/user';
 
 class PlayerNameInput extends Component {
   constructor(props) {
@@ -27,7 +27,7 @@ class PlayerNameInput extends Component {
   handleStart() {
     const name = this.state.username;
     this.props.setIsLoginActive(false);
-    this.props.setName(name);
+    this.props.setUserName(name);
   }
 
   render() {
@@ -68,6 +68,6 @@ export default connect(
   }),
   {
     setIsLoginActive,
-    setName,
+    setUserName,
   },
 )(PlayerNameInput);

@@ -2,6 +2,7 @@ export const initialState = {
   isActive: false,
   isAttack: true,
   description: '',
+  note: '',
   task: '',
   expectedAnswer: '',
 };
@@ -16,6 +17,7 @@ export function taskReducer(state = initialState, action) {
       return {
         ...state,
         description: action.payload.description,
+        note: action.payload.note,
         task: action.payload.task,
         expectedAnswer: action.payload.expectedAnswer,
       };

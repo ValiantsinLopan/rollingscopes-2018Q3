@@ -6,21 +6,73 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux';
-import { setIsSelectSpellActive } from '../store/actions/page';
 import { setIsTaskActive } from '../store/actions/task';
+import { setUserScore, setMonstersKilled } from '../store/actions/user';
+import { setMonsterScore, setMonsterName } from '../store/actions/monster';
 
 class TaskModal extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      answer: '',
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleAnswer = this.handleAnswer.bind(this);
+  }
+
+  handleChange(e) {
+    this.setState({ answer: e.target.value });
+  }
+
+  handleAnswer() {
+    const scoreDelta = 50;
+    if (this.state.answer === this.props.expectedAnswer) {
+      if (this.props.isAttack) {
+        const newMonsterScore = this.props.monsterScore - scoreDelta;
+        if (newMonsterScore <= 0) {
+          this.props.setMonstersKilled(this.props.monstersKilled + 1);
+          this.props.setMonsterScore(100);
+          this.props.setMonsterName();
+        } else {
+          this.props.setMonsterScore(newMonsterScore);
+        }
+      } else {
+        const newUserScore = this.props.userScore + scoreDelta > 100
+          ? 100
+          : this.props.userScore + scoreDelta;
+        this.props.setUserScore(newUserScore);
+      }
+    } else {
+      const newUserScore = this.props.userScore - scoreDelta;
+      if (newUserScore <= 0) {
+        this.props.setUserScore(newUserScore);
+      } else {
+        this.props.setUserScore(newUserScore);
+      }
+    }
+    this.props.setIsTaskActive(false);
+  }
+
   render() {
-    const { isOpen, description, task } = this.props;
+    const {
+      isOpen,
+      description,
+      note,
+      task,
+    } = this.props;
     return (
       <Dialog
         open={isOpen}
       >
         <DialogTitle>{description}</DialogTitle>
         <DialogContent>
+          <Typography variant="h3" gutterBottom align="center">
+            {task}
+          </Typography>
           <DialogContentText>
-            {description}
+            {note}
           </DialogContentText>
           <TextField
             autoFocus
@@ -46,11 +98,20 @@ class TaskModal extends Component {
 export default connect(
   store => ({
     isOpen: store.task.isActive,
+    isAttack: store.task.isAttack,
     description: store.task.description,
+    note: store.task.note,
     task: store.task.task,
     expectedAnswer: store.task.expectedAnswer,
+    userScore: store.user.score,
+    monstersKilled: store.user.monstersKilled,
+    monsterScore: store.monster.score,
   }),
   {
-
-  }
+    setIsTaskActive,
+    setUserScore,
+    setMonstersKilled,
+    setMonsterScore,
+    setMonsterName,
+  },
 )(TaskModal);
