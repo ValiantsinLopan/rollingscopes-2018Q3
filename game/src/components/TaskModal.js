@@ -8,9 +8,12 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { setIsTaskActive } from '../store/actions/task';
 import { setUserScore, setMonstersKilled } from '../store/actions/user';
 import { setMonsterScore, setMonsterName } from '../store/actions/monster';
+import { addUserToScore } from '../store/actions/score';
+import { setIsScoreActive } from '../store/actions/page';
 
 class TaskModal extends Component {
   constructor(props) {
@@ -27,7 +30,7 @@ class TaskModal extends Component {
   }
 
   handleAnswer() {
-    const scoreDelta = 15;
+    const scoreDelta = 100;
     if (this.state.answer === this.props.expectedAnswer) {
       if (this.props.isAttack) {
         const newMonsterScore = this.props.monsterScore - scoreDelta;
@@ -48,6 +51,13 @@ class TaskModal extends Component {
       const newUserScore = this.props.userScore - scoreDelta;
       if (newUserScore <= 0) {
         this.props.setUserScore(newUserScore);
+        this.props.addUserToScore(
+          this.props.userName,
+          this.props.monstersKilled,
+          new Date().getTime(),
+        );
+        this.props.setIsScoreActive(true);
+        this.props.setUserScore(100);
       } else {
         this.props.setUserScore(newUserScore);
       }
@@ -103,6 +113,7 @@ export default connect(
     note: store.task.note,
     task: store.task.task,
     expectedAnswer: store.task.expectedAnswer,
+    userName: store.user.name,
     userScore: store.user.score,
     monstersKilled: store.user.monstersKilled,
     monsterScore: store.monster.score,
@@ -113,5 +124,7 @@ export default connect(
     setMonstersKilled,
     setMonsterScore,
     setMonsterName,
+    setIsScoreActive,
+    addUserToScore,
   },
-)(TaskModal);
+)(withRouter(TaskModal));

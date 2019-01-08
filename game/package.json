@@ -13,6 +13,7 @@
     "react-landing-page": "^2.0.2",
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",
+    "react-router-modal": "^1.5.2",
     "react-scripts": "2.1.2",
     "rebass": "^3.0.0",
     "redux": "^4.0.1",

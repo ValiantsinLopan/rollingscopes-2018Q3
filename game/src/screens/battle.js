@@ -5,6 +5,7 @@ import GameField from '../components/GameField';
 import PlayerNameInput from '../components/PlayerNameInput';
 import SelectSpellModal from '../components/SelectSpellModal';
 import TaskModal from '../components/TaskModal';
+import ScoreModal from '../components/ScoreModal';
 
 class Battle extends Component {
   render() {
@@ -16,6 +17,7 @@ class Battle extends Component {
         <PlayerNameInput />
         <SelectSpellModal />
         <TaskModal />
+        <ScoreModal />
       </div>
     );
   }

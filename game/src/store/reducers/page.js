@@ -1,6 +1,7 @@
 export const initialState = {
   isLoginActive: true,
   isSelectSpellActive: false,
+  isScoreActive: false,
 };
 
 export function pageReducer(state = initialState, action) {
@@ -9,6 +10,8 @@ export function pageReducer(state = initialState, action) {
       return { ...state, isLoginActive: action.payload };
     case 'SET_SELECT_SPELL_ACTIVE':
       return { ...state, isSelectSpellActive: action.payload };
+    case 'SET_SCORE_ACTIVE':
+      return { ...state, isScoreActive: action.payload };
     default:
       return state;
   }

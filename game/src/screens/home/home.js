@@ -3,6 +3,7 @@ import {
   Heading, Hero, Subhead, Flex, ScrollDownIndicator, Image, Laptop, Contributor, Small,
 } from 'react-landing-page';
 import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 import monsters from './images/monsters.png';
 import gameplay from './images/gameplay.png';
 import avatar from './images/avatar.jpg';
@@ -23,20 +24,23 @@ class Home extends Component {
             <Flex width={[1, 1 / 2]} alignItems="center" flexDirection="column" p={3}>
               <Heading className="header">Monsters School</Heading>
               <Subhead textAlign="center">Amazing game for little monster hunters!</Subhead>
-              <Button
-                className="playButton"
-                variant="outlined"
-                color="primary"
-                size="large"
-                href="/game"
-                style={
-                    {
-                      margin: '10px 0 0 0',
-                    }
-                  }
+              <Link
+                to="/game"
               >
-                  Play now!
-              </Button>
+                <Button
+                  className="playButton"
+                  variant="outlined"
+                  color="primary"
+                  size="large"
+                  style={
+                      {
+                        margin: '10px 0 0 0',
+                      }
+                    }
+                >
+                    Play now!
+                </Button>
+              </Link>
             </Flex>
           </Flex>
           <ScrollDownIndicator />
