@@ -30,7 +30,7 @@ class TaskModal extends Component {
   }
 
   handleAnswer() {
-    const scoreDelta = 100;
+    const scoreDelta = 15;
     if (this.state.answer === this.props.expectedAnswer) {
       if (this.props.isAttack) {
         const newMonsterScore = this.props.monsterScore - scoreDelta;
