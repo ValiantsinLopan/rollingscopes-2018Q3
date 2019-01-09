@@ -11,17 +11,17 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux';
+import { orderBy } from 'lodash';
+import moment from 'moment';
 import { setUserScore, setMonstersKilled, setUserName } from '../store/actions/user';
 import { setMonsterScore, setMonsterName } from '../store/actions/monster';
-import { addUserToScore } from '../store/actions/score';
-import { setIsScoreActive } from '../store/actions/page';
-import { orderBy } from 'lodash';
+import { setIsScoreActive, setIsLoginActive } from '../store/actions/page';
 
 class ScoreModal extends Component {
   constructor(props) {
     super(props);
     this.handleClose = this.handleClose.bind(this);
-    this.handleReplay = this.handleClose.bind(this);
+    this.handleReplay = this.handleReplay.bind(this);
   }
 
   handleClose() {
@@ -29,7 +29,13 @@ class ScoreModal extends Component {
   }
 
   handleReplay() {
+    this.props.setUserName('');
+    this.props.setUserScore(100);
+    this.props.setMonstersKilled(0);
+    this.props.setMonsterName();
+    this.props.setMonsterScore(100);
     this.props.setIsScoreActive(false);
+    this.props.setIsLoginActive(true);
   }
 
   render() {
@@ -37,31 +43,36 @@ class ScoreModal extends Component {
     return (
       <Dialog
         open={isOpen}
-        fullScreen
+        fullWidth
       >
         <DialogTitle align="center">Score</DialogTitle>
         <DialogContent>
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell><Typography variant="body2">№</Typography></TableCell>
+                <TableCell><Typography variant="body2">Position</Typography></TableCell>
                 <TableCell><Typography variant="body2">Name</Typography></TableCell>
                 <TableCell><Typography variant="body2">Monsters killed</Typography></TableCell>
                 <TableCell><Typography variant="body2">Game played</Typography></TableCell>
               </TableRow>
-              <TableBody>
-                {users.map((i, user) => (
-                  <TableRow
-                    key={i}
-                  >
-                    <TableCell><Typography variant="body1">{i}</Typography></TableCell>
-                    <TableCell><Typography variant="body1">{user.name}</Typography></TableCell>
-                    <TableCell><Typography variant="body1">{user.score}</Typography></TableCell>
-                    <TableCell><Typography variant="body1">{user.time}</Typography></TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
             </TableHead>
+            <TableBody>
+              {orderBy(users, ['score'], ['desc']).map((user, i) => (
+                <TableRow
+                  key={i.toString()}
+                  style={
+                    {
+                      backgroundColor: `${user.name === lastUserName ? 'rgba(48, 63, 159, 0.2)' : ''}`,
+                    }
+                  }
+                >
+                  <TableCell><Typography variant="body1">{i + 1}</Typography></TableCell>
+                  <TableCell><Typography variant="body1">{user.name}</Typography></TableCell>
+                  <TableCell><Typography variant="body1">{user.score}</Typography></TableCell>
+                  <TableCell><Typography variant="body1">{moment(user.time).format('MMMM Do YYYY, hh:mm:ss')}</Typography></TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
 
           </Table>
         </DialogContent>
@@ -69,7 +80,7 @@ class ScoreModal extends Component {
           <Button onClick={this.handleReplay} color="primary" fullWidth size="large">
             New game
           </Button>
-          <Button onClick={this.handleClose} color="secondary" fullWidth size="large">
+          <Button onClick={this.handleClose} color="secondary" fullWidth size="large" href="/">
             Exit
           </Button>
         </DialogActions>
@@ -91,5 +102,6 @@ export default connect(
     setUserName,
     setMonsterScore,
     setMonsterName,
+    setIsLoginActive,
   },
 )(ScoreModal);

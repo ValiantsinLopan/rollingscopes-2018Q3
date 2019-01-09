@@ -1,10 +1,5 @@
 export const initialState = {
   users: [
-    {
-      name: '',
-      score: '',
-      time: '',
-    },
   ],
 };
 

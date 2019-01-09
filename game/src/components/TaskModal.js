@@ -57,7 +57,6 @@ class TaskModal extends Component {
           new Date().getTime(),
         );
         this.props.setIsScoreActive(true);
-        this.props.setUserScore(100);
       } else {
         this.props.setUserScore(newUserScore);
       }
