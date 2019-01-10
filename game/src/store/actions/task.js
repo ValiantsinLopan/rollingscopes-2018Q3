@@ -9,19 +9,22 @@ export const setIsAttack = isAttack => async (dispatch) => {
   dispatch({ type: 'SET_IS_ATTACK', payload: isAttack });
 };
 
-export const getTask = type => async (dispatch) => {
+export const getTask = taskType => async (dispatch) => {
   let task = {};
-  console.log(type);
-  switch (type) {
+  switch (taskType) {
     case 'arithmetics':
       task = new AritmeticsTask(0, 10).getTask();
       break;
     case 'translation':
       task = new TranslationTask().getTask();
       break;
+    case 'listening':
+      task = new TranslationTask().getTask();
+      break;
     default:
       task = new AritmeticsTask(0, 10).getTask();
       break;
   }
+  task.type = taskType;
   dispatch({ type: 'LOAD_TASK', payload: task });
 };

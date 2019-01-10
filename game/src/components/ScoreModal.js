@@ -80,7 +80,7 @@ class ScoreModal extends Component {
           <Button onClick={this.handleReplay} color="primary" fullWidth size="large">
             New game
           </Button>
-          <Button onClick={this.handleClose} color="secondary" fullWidth size="large" href="/">
+          <Button onClick={this.handleClose} color="secondary" fullWidth size="large" href="https://valiantsinlopan.github.io/monstergame/">
             Exit
           </Button>
         </DialogActions>

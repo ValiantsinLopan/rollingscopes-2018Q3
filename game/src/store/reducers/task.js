@@ -1,6 +1,7 @@
 export const initialState = {
   isActive: false,
   isAttack: true,
+  type: '',
   description: '',
   note: '',
   task: '',
@@ -16,6 +17,7 @@ export function taskReducer(state = initialState, action) {
     case 'LOAD_TASK':
       return {
         ...state,
+        type: action.payload.type,
         description: action.payload.description,
         note: action.payload.note,
         task: action.payload.task,

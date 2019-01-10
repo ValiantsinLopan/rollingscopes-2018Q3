@@ -7,13 +7,19 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
+import Divider from '@material-ui/core/Divider';
+import Translate from '@material-ui/icons/Translate';
+import PlusOne from '@material-ui/icons/PlusOne';
+import Hearing from '@material-ui/icons/Hearing';
 import { connect } from 'react-redux';
 import { setIsSelectSpellActive } from '../store/actions/page';
 import { setIsTaskActive, setIsAttack, getTask } from '../store/actions/task';
+import * as TaskTypes from '../const/taskConsts';
 
 class SelectSpellModal extends Component {
   constructor(props) {
@@ -38,7 +44,6 @@ class SelectSpellModal extends Component {
 
   handleSelectSpell(event) {
     const taskType = event.currentTarget.getAttribute('value');
-    console.log(taskType);
     this.props.getTask(taskType);
     this.props.setIsSelectSpellActive(false);
     this.props.setIsTaskActive(true);
@@ -50,7 +55,7 @@ class SelectSpellModal extends Component {
       <Dialog
         open={isOpen}
       >
-        <DialogTitle>Slect your spell</DialogTitle>
+        <DialogTitle>Select your spell</DialogTitle>
         <DialogContent>
           <FormControl component="fieldset">
             <RadioGroup
@@ -73,12 +78,25 @@ class SelectSpellModal extends Component {
               />
             </RadioGroup>
           </FormControl>
+          <Divider variant="middle" />
           <List>
-            <ListItem button onClick={this.handleSelectSpell} value="arithmetic">
-              <ListItemText primary="Arithmetic" />
+            <ListItem button onClick={this.handleSelectSpell} value={TaskTypes.ARITHMETICS}>
+              <ListItemIcon>
+                <PlusOne />
+              </ListItemIcon>
+              <ListItemText primary="Arithmetics" />
             </ListItem>
-            <ListItem button onClick={this.handleSelectSpell} value="translation">
+            <ListItem button onClick={this.handleSelectSpell} value={TaskTypes.TRANSLATION}>
+              <ListItemIcon>
+                <Translate />
+              </ListItemIcon>
               <ListItemText primary="Translation" />
+            </ListItem>
+            <ListItem button onClick={this.handleSelectSpell} value={TaskTypes.LISTENING}>
+              <ListItemIcon>
+                <Hearing />
+              </ListItemIcon>
+              <ListItemText primary="Listening" />
             </ListItem>
           </List>
         </DialogContent>

@@ -6,7 +6,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { setIsTaskActive } from '../store/actions/task';
@@ -14,6 +13,9 @@ import { setUserScore, setMonstersKilled } from '../store/actions/user';
 import { setMonsterScore, setMonsterName } from '../store/actions/monster';
 import { addUserToScore } from '../store/actions/score';
 import { setIsScoreActive } from '../store/actions/page';
+import TextTask from './Tasks/TextTask';
+import VoiceTask from './Tasks/VoiceTask';
+import * as TaskTypes from '../const/taskConsts';
 
 class TaskModal extends Component {
   constructor(props) {
@@ -67,6 +69,7 @@ class TaskModal extends Component {
   render() {
     const {
       isOpen,
+      type,
       description,
       note,
       task,
@@ -76,10 +79,11 @@ class TaskModal extends Component {
         open={isOpen}
       >
         <DialogTitle>{description}</DialogTitle>
-        <DialogContent>
-          <Typography variant="h3" gutterBottom align="center">
-            {task}
-          </Typography>
+        <DialogContent style={{ textAlign: 'center' }}>
+          {type === TaskTypes.LISTENING
+            ? <VoiceTask task={task} />
+            : <TextTask task={task} />
+          }
           <DialogContentText>
             {note}
           </DialogContentText>
@@ -108,6 +112,7 @@ export default connect(
   store => ({
     isOpen: store.task.isActive,
     isAttack: store.task.isAttack,
+    type: store.task.type,
     description: store.task.description,
     note: store.task.note,
     task: store.task.task,
