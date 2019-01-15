@@ -6,7 +6,7 @@ export const dictionary = {
     },
     {
       word: 'dog',
-      trans: ['сабака', 'собачка'],
+      trans: ['собака', 'собачка'],
     },
     {
       word: 'world',

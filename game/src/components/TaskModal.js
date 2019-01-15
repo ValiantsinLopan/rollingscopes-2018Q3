@@ -88,10 +88,10 @@ class TaskModal extends Component {
             {note}
           </DialogContentText>
           <TextField
+            id="answer"
             autoFocus
             margin="normal"
             variant="outlined"
-            id="answer"
             label="Your answer"
             type="email"
             fullWidth

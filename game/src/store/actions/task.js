@@ -16,8 +16,6 @@ export const getTask = taskType => async (dispatch) => {
       task = new AritmeticsTask(0, 10).getTask();
       break;
     case 'translation':
-      task = new TranslationTask().getTask();
-      break;
     case 'listening':
       task = new TranslationTask().getTask();
       break;
