@@ -3,33 +3,37 @@
 const _ = require('lodash');
 const XLSX = require('xlsx');
 
-const getRows = (sheet) => {
-  const rowsInfo = XLSX.utils.decode_range(sheet['!ref']);
-  return _.range((rowsInfo.s.c + 1), (rowsInfo.e.r + 1));
-};
-
+// Tasks
 const tasksWorkbook = XLSX.readFile('./data/Tasks.xlsx');
+
 const taskSheet = tasksWorkbook.Sheets.Sheet1;
-const taskMapping = {
-  name: 'A',
-  link: 'B',
-  status: 'C',
-};
+const taskHeader = ['name', 'link', 'status'];
 
-const getTask = (sheet, currentRow) => {
-  const task = {
-    name: sheet[taskMapping.name + currentRow].v,
-    link: sheet[taskMapping.link + currentRow].v,
-    status: sheet[taskMapping.status + currentRow].v,
-  };
-
-  return task;
-};
-
-const getTasks = (sheet) => {
-  const rows = getRows(sheet);
-  return rows.map(row => getTask(sheet, row));
-};
-
-const tasks = getTasks(taskSheet);
+const tasks = XLSX.utils.sheet_to_json(taskSheet, { header: taskHeader });
 console.log(tasks);
+
+// Mentor/student
+const mentorStudentWorkbook = XLSX.readFile('data/Mentor-students pairs.xlsx');
+
+const pairsSheet = mentorStudentWorkbook.Sheets.pairs;
+const mentorsSheet = mentorStudentWorkbook.Sheets['second_name-to_github_account'];
+
+const studentsHeader = ['mentor', 'student'];
+const mentorsHeader = ['name', 'surname', 'city', 'countOfStudents', 'github'];
+
+const students = XLSX.utils.sheet_to_json(pairsSheet, { header: studentsHeader });
+const mentors = XLSX.utils.sheet_to_json(mentorsSheet, { header: mentorsHeader });
+
+console.log(students);
+console.log(mentors);
+
+// Score
+
+const scoreWorkbook = XLSX.readFile('data/Mentor score.xlsx');
+
+const scoreSheet = scoreWorkbook.Sheets['Form Responses 1'];
+const scoreHeader = ['timestamp', 'mentorGithub', 'studentGithub', 'task', 'prLink', 'score', 'comment'];
+
+const score = XLSX.utils.sheet_to_json(scoreSheet, { header: scoreHeader });
+
+console.log(score);
