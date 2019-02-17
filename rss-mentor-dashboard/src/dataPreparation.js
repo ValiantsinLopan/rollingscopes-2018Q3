@@ -1,7 +1,6 @@
- //import XLSX from 'xlsx';
-// eslint-disable-next-line global-require
 const _ = require('lodash');
 const XLSX = require('xlsx');
+const fs = require('fs');
 
 // Tasks
 const tasksWorkbook = XLSX.readFile('./data/Tasks.xlsx');
@@ -10,7 +9,29 @@ const taskSheet = tasksWorkbook.Sheets.Sheet1;
 const taskHeader = ['name', 'link', 'status'];
 
 const tasks = XLSX.utils.sheet_to_json(taskSheet, { header: taskHeader });
-console.log(tasks);
+tasks.shift(); // remove header object
+
+// Score
+const scoreWorkbook = XLSX.readFile('data/Mentor score.xlsx');
+
+const scoreSheet = scoreWorkbook.Sheets['Form Responses 1'];
+const scoreHeader = ['timestamp', 'mentorGithub', 'studentGithub', 'task', 'prLink', 'score', 'comment'];
+
+let score = XLSX.utils.sheet_to_json(scoreSheet, { header: scoreHeader });
+score.shift();
+
+score = score.map(s => ({
+  timestamp: s.timestamp,
+  mentorGithub: s.mentorGithub,
+  studentGithub: s.studentGithub.toLowerCase().replace('-2018q3', ''),
+  task: s.task,
+  prLink: s.prLink,
+  score: s.score,
+  comment: s.comment,
+}));
+
+const studentTasks = _.groupBy(score, 'studentGithub');
+
 
 // Mentor/student
 const mentorStudentWorkbook = XLSX.readFile('data/Mentor-students pairs.xlsx');
@@ -21,19 +42,49 @@ const mentorsSheet = mentorStudentWorkbook.Sheets['second_name-to_github_account
 const studentsHeader = ['mentor', 'student'];
 const mentorsHeader = ['name', 'surname', 'city', 'countOfStudents', 'github'];
 
-const students = XLSX.utils.sheet_to_json(pairsSheet, { header: studentsHeader });
-const mentors = XLSX.utils.sheet_to_json(mentorsSheet, { header: mentorsHeader });
+let students = XLSX.utils.sheet_to_json(pairsSheet, { header: studentsHeader });
+students.shift(); // remove header object
+students = students.map((s) => {
+  const studentGithub = `https://github.com/${s.student}`;
+  const st = {
+    mentor: s.mentor,
+    student: {
+      nickname: s.student,
+      github: studentGithub,
+      tasks: studentTasks[studentGithub],
+    },
+  };
+  return st;
+});
 
-console.log(students);
-console.log(mentors);
+const studentsByMentor = _.groupBy(students, 'mentor');
 
-// Score
+let mentors = XLSX.utils.sheet_to_json(mentorsSheet, { header: mentorsHeader });
+mentors.shift(); // remove header object
+mentors = mentors.map((m) => {
+  const mentorFullName = `${m.name} ${m.surname}`;
+  const mentor = {
+    name: m.name,
+    surname: m.surname,
+    fullName: mentorFullName,
+    city: m.city,
+    countOfStudents: m.countOfStudents,
+    github: m.github,
+    students: studentsByMentor[mentorFullName].map(s => s.student),
+  };
+  return mentor;
+});
+mentors = _.orderBy(mentors, ['fullName']);
 
-const scoreWorkbook = XLSX.readFile('data/Mentor score.xlsx');
+const mentorsList = {
+  mentors,
+  tasks,
+};
 
-const scoreSheet = scoreWorkbook.Sheets['Form Responses 1'];
-const scoreHeader = ['timestamp', 'mentorGithub', 'studentGithub', 'task', 'prLink', 'score', 'comment'];
-
-const score = XLSX.utils.sheet_to_json(scoreSheet, { header: scoreHeader });
-
-console.log(score);
+fs.writeFile('data/mentors.json', JSON.stringify(mentorsList, null, 2), (error) => {
+  if (error) {
+    console.error(error);
+    return;
+  }
+  console.log('File successfully created!');
+});
