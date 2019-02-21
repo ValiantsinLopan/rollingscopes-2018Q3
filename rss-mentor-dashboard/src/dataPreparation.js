@@ -17,7 +17,7 @@ const scoreWorkbook = XLSX.readFile('data/Mentor score.xlsx');
 const scoreSheet = scoreWorkbook.Sheets['Form Responses 1'];
 const scoreHeader = ['timestamp', 'mentorGithub', 'studentGithub', 'task', 'prLink', 'score', 'comment'];
 
-let score = XLSX.utils.sheet_to_json(scoreSheet, { header: scoreHeader });
+let score = XLSX.utils.sheet_to_json(scoreSheet, { header: scoreHeader, raw: false });
 score.shift();
 
 score = score.map(s => ({
