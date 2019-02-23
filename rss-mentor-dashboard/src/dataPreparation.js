@@ -84,6 +84,7 @@ mentors = mentors.map((m) => {
     city: m.city,
     countOfStudents: m.countOfStudents,
     github: m.github,
+    nickname: m.github.replace('https://github.com/', ''),
     students: studentsByMentor[mentorFullName].map(s => s.student),
   };
   return mentor;
@@ -95,7 +96,7 @@ const mentorsList = {
   tasks,
 };
 
-fs.writeFile('data/mentors.json', JSON.stringify(mentorsList, null, 2), (error) => {
+fs.writeFile('src/store/data/mentors.json', JSON.stringify(mentorsList, null, 2), (error) => {
   if (error) {
     console.error(error);
     return;
