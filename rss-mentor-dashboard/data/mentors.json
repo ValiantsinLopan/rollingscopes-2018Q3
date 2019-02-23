@@ -20418,12 +20418,12 @@
       "status": "Checked"
     },
     {
-      "name": "Code Jam \"CoreJS\" ",
+      "name": "Code Jam \"CoreJS\"",
       "link": "https://github.com/rolling-scopes-school/tasks/blob/2018-Q3/tasks/codejam-corejs.md",
       "status": "Checked"
     },
     {
-      "name": "Code Jam \"DOM, DOM Events\" ",
+      "name": "Code Jam \"DOM, DOM Events\"",
       "link": "https://github.com/rolling-scopes-school/tasks/blob/2018-Q3/tasks/codejam-notification.md",
       "status": "Checked"
     },
@@ -20433,7 +20433,7 @@
       "status": "Checking"
     },
     {
-      "name": "RS Activist - ",
+      "name": "RS Activist",
       "link": "https://github.com/rolling-scopes-school/tasks/blob/2018-Q3/tasks/rs-school-activist.md",
       "status": "In Progress"
     },
@@ -20455,6 +20455,11 @@
     {
       "name": "Course work",
       "status": "ToDo"
+    },
+    {
+      "name": "Presentation",
+      "link": "https://github.com/rolling-scopes-school/tasks/blob/2018-Q3/tasks/presentation.md",
+      "status": "Checked"
     }
   ]
 }

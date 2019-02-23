@@ -8,8 +8,22 @@ const tasksWorkbook = XLSX.readFile('./data/Tasks.xlsx');
 const taskSheet = tasksWorkbook.Sheets.Sheet1;
 const taskHeader = ['name', 'link', 'status'];
 
-const tasks = XLSX.utils.sheet_to_json(taskSheet, { header: taskHeader });
+let tasks = XLSX.utils.sheet_to_json(taskSheet, { header: taskHeader });
 tasks.shift(); // remove header object
+
+const presentationTask = {
+  name: 'Presentation',
+  link: 'https://github.com/rolling-scopes-school/tasks/blob/2018-Q3/tasks/presentation.md',
+  status: 'Checked',
+};
+
+tasks = tasks.map(t => ({
+  name: _.trimEnd(t.name, ['-', ' ']),
+  link: t.link,
+  status: t.status,
+}));
+
+if (!_.includes(tasks, presentationTask)) tasks.push(presentationTask); // add Presentation task, that score contains
 
 // Score
 const scoreWorkbook = XLSX.readFile('data/Mentor score.xlsx');
