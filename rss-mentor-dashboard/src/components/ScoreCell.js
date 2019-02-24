@@ -40,13 +40,14 @@ class ScoreCell extends Component {
     const { task, studentTasks } = this.props;
     return (
       <TableCell
+        align="center"
         style={
         {
           backgroundColor: this.getBackground(task, studentTasks),
         }
       }
       >
-        <Typography variant="body2" gutterBottom>
+        <Typography variant="button" gutterBottom>
           {this.getScore(task, studentTasks)}
         </Typography>
       </TableCell>

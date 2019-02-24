@@ -20,8 +20,8 @@ class ScoreTable extends Component {
         <Paper className={classes.paper}>
           <Table className={classes.table}>
             <TableHead>
-              <TableRow>
-                <TableCell><Typography variant="title" gutterBottom>Task</Typography></TableCell>
+              <TableRow className={classes.head}>
+                <TableCell align="center"><Typography variant="title" gutterBottom>Task</Typography></TableCell>
                 {
                   students.map(student => (
                     <TableCell>
@@ -38,7 +38,7 @@ class ScoreTable extends Component {
                 <TableRow>
                   <TableCell>
                     <Link href={task.link} underline="none">
-                      <Typography variant="body1">{task.name}</Typography>
+                      <Typography variant="title">{task.name}</Typography>
                     </Link>
                   </TableCell>
                   {students.map(student => (
@@ -63,6 +63,9 @@ const styles = {
   paper: {
     alignSelf: 'center',
     marginBottom: 20,
+  },
+  head: {
+    backgroundColor: 'rgba(0, 255, 143, 0.2)',
   },
   notification: {
     textAlign: 'center',

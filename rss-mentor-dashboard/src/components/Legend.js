@@ -7,7 +7,7 @@ const legendItems = [
   { name: 'To Check', color: '#FA8072' },
   { name: 'In Progress', color: '#FFFF00' },
   { name: 'To Do', color: '#A9A9A9' },
-  { name: 'Not checked or No PR from student', color: '#FF0000' },
+  { name: 'Not checked or no PR from student', color: '#FF0000' },
 ];
 
 class Legend extends Component {
