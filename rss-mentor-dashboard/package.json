@@ -2,9 +2,11 @@
   "name": "rss-mentor-dashboard",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://valiantsinlopan.github.io/rss-mentor-dashboard",
   "dependencies": {
     "@material-ui/core": "^3.9.2",
     "@material-ui/icons": "^3.0.2",
+    "gh-pages": "^2.0.1",
     "lodash": "^4.17.11",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
@@ -21,7 +23,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prepare": "node src/dataPreparation.js"
+    "prepare": "node src/dataPreparation.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build" 
   },
   "eslintConfig": {
     "extends": "react-app"
