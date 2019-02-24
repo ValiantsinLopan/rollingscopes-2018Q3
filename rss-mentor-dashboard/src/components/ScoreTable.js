@@ -55,7 +55,7 @@ class ScoreTable extends Component {
         </Paper>
       );
     }
-    return (<Typography variant="title" gutterBottom>Please, select mentor</Typography>);
+    return (<div className={classes.notification}><Typography variant="title" gutterBottom>Please, select mentor</Typography></div>);
   }
 }
 
@@ -63,6 +63,9 @@ const styles = {
   paper: {
     alignSelf: 'center',
     marginBottom: 20,
+  },
+  notification: {
+    textAlign: 'center',
   },
 };
 

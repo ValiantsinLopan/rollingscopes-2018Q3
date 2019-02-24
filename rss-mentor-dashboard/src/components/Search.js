@@ -13,7 +13,9 @@ import { setMentor } from '../store/actions/mentors';
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    maxWidth: '600px',
+    alignSelf: 'center',
+    width: '600px',
+    maxHeight: '20px',
     margin: 20,
   },
   input: {

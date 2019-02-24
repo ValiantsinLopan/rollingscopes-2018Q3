@@ -3,6 +3,7 @@ import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 import Search from '../components/Search';
 import ScoreTable from '../components/ScoreTable';
+import MentorBar from '../components/MentorBar';
 
 class Main extends Component {
   render() {
@@ -10,6 +11,7 @@ class Main extends Component {
     return (
       <Paper className={classes.root}>
         <Search />
+        <MentorBar />
         <ScoreTable />
       </Paper>
     );
@@ -21,8 +23,7 @@ const styles = {
     width: '100%',
     overflow: 'none',
     display: 'flex',
-    height: '100vh',
-    justifyContent: 'center',
+    minHeight: '100vh',
     flexDirection: 'column',
   },
 };
