@@ -15,5 +15,5 @@ Generated file will appear in : [src/store/data/mentors.json](./src/store/data/m
 Deploy generated dashboard using
 ### `npm run deploy`
 
-Deployed app: https://valiantsinlopan.github.io/rss-mentor-dashboard
+Deployed app: https://valiantsinlopan.github.io/rss-mentor-dashboard/
 
