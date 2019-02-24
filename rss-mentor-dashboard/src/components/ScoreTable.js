@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
+import Link from '@material-ui/core/Link';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import TableFooter from '@material-ui/core/TableFooter';
 import Typography from '@material-ui/core/Typography';
 import { Paper } from '@material-ui/core';
+import ScoreCell from './ScoreCell';
 
 class ScoreTable extends Component {
   render() {
@@ -21,7 +24,11 @@ class ScoreTable extends Component {
                 <TableCell><Typography variant="title" gutterBottom>Task</Typography></TableCell>
                 {
                   students.map(student => (
-                    <TableCell><Typography variant="title" gutterBottom key={student.nickname}>{student.nickname}</Typography></TableCell>
+                    <TableCell>
+                      <Link href={student.github} underline="none">
+                        <Typography variant="title" gutterBottom key={student.nickname}>{student.nickname}</Typography>
+                      </Link>
+                    </TableCell>
                   ))
                 }
               </TableRow>
@@ -29,21 +36,23 @@ class ScoreTable extends Component {
             <TableBody>
               {tasks.map(task => (
                 <TableRow>
-                  <TableCell><Typography variant="body1">{task.name}</Typography></TableCell>
+                  <TableCell>
+                    <Link href={task.link} underline="none">
+                      <Typography variant="body1">{task.name}</Typography>
+                    </Link>
+                  </TableCell>
                   {students.map(student => (
-                    <TableCell>
-                      <Typography variant="body2" gutterBottom>
-                        {typeof (student.tasks) === 'undefined'
-                        ? ''
-                        : typeof (student.tasks.find(t => t.task === task.name)) === 'undefined'
-                          ? ''
-                          : student.tasks.find(t => t.task === task.name).score}
-                      </Typography>
-                    </TableCell>
+                    <ScoreCell
+                      task={task}
+                      studentTasks={student.tasks}
+                    />
                   ))}
                 </TableRow>
               ))}
             </TableBody>
+            <TableFooter>
+              valya
+            </TableFooter>
           </Table>
         </Paper>
       );
