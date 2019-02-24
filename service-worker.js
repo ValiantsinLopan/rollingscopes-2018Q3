@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/rss-mentor-dashboard/precache-manifest.a60f2252df96d015665b29defdc232eb.js"
+  "/valiantsinlopan-2018Q3/precache-manifest.3d1b94ce623c690b5a90418df5190911.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/rss-mentor-dashboard/index.html", {
+workbox.routing.registerNavigationRoute("/valiantsinlopan-2018Q3/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
