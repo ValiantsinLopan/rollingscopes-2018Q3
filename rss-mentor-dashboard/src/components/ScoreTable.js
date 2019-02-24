@@ -7,10 +7,10 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import TableFooter from '@material-ui/core/TableFooter';
 import Typography from '@material-ui/core/Typography';
 import { Paper } from '@material-ui/core';
 import ScoreCell from './ScoreCell';
+import Legend from './Legend';
 
 class ScoreTable extends Component {
   render() {
@@ -50,10 +50,8 @@ class ScoreTable extends Component {
                 </TableRow>
               ))}
             </TableBody>
-            <TableFooter>
-              valya
-            </TableFooter>
           </Table>
+          <Legend />
         </Paper>
       );
     }
