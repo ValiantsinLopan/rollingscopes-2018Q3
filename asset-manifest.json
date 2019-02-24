@@ -1,13 +1,13 @@
 {
-  "main.css": "/monstergame/rss-mentor-dashboard/static/css/main.3ace9ebe.chunk.css",
-  "main.js": "/monstergame/rss-mentor-dashboard/static/js/main.66547571.chunk.js",
-  "main.js.map": "/monstergame/rss-mentor-dashboard/static/js/main.66547571.chunk.js.map",
-  "runtime~main.js": "/monstergame/rss-mentor-dashboard/static/js/runtime~main.6a7d663b.js",
-  "runtime~main.js.map": "/monstergame/rss-mentor-dashboard/static/js/runtime~main.6a7d663b.js.map",
-  "static/js/2.721b7117.chunk.js": "/monstergame/rss-mentor-dashboard/static/js/2.721b7117.chunk.js",
-  "static/js/2.721b7117.chunk.js.map": "/monstergame/rss-mentor-dashboard/static/js/2.721b7117.chunk.js.map",
-  "index.html": "/monstergame/rss-mentor-dashboard/index.html",
-  "precache-manifest.e92dacd1f1036953fc776972fd3e25fc.js": "/monstergame/rss-mentor-dashboard/precache-manifest.e92dacd1f1036953fc776972fd3e25fc.js",
-  "service-worker.js": "/monstergame/rss-mentor-dashboard/service-worker.js",
-  "static/css/main.3ace9ebe.chunk.css.map": "/monstergame/rss-mentor-dashboard/static/css/main.3ace9ebe.chunk.css.map"
+  "main.css": "/rss-mentor-dashboard/static/css/main.3ace9ebe.chunk.css",
+  "main.js": "/rss-mentor-dashboard/static/js/main.51b2dab7.chunk.js",
+  "main.js.map": "/rss-mentor-dashboard/static/js/main.51b2dab7.chunk.js.map",
+  "runtime~main.js": "/rss-mentor-dashboard/static/js/runtime~main.5280a2c0.js",
+  "runtime~main.js.map": "/rss-mentor-dashboard/static/js/runtime~main.5280a2c0.js.map",
+  "static/js/2.721b7117.chunk.js": "/rss-mentor-dashboard/static/js/2.721b7117.chunk.js",
+  "static/js/2.721b7117.chunk.js.map": "/rss-mentor-dashboard/static/js/2.721b7117.chunk.js.map",
+  "index.html": "/rss-mentor-dashboard/index.html",
+  "precache-manifest.a60f2252df96d015665b29defdc232eb.js": "/rss-mentor-dashboard/precache-manifest.a60f2252df96d015665b29defdc232eb.js",
+  "service-worker.js": "/rss-mentor-dashboard/service-worker.js",
+  "static/css/main.3ace9ebe.chunk.css.map": "/rss-mentor-dashboard/static/css/main.3ace9ebe.chunk.css.map"
 }

@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/monstergame/rss-mentor-dashboard/precache-manifest.e92dacd1f1036953fc776972fd3e25fc.js"
+  "/rss-mentor-dashboard/precache-manifest.a60f2252df96d015665b29defdc232eb.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/monstergame/rss-mentor-dashboard/index.html", {
+workbox.routing.registerNavigationRoute("/rss-mentor-dashboard/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
