@@ -71,7 +71,7 @@ const styles = {
     textAlign: 'center',
   },
   cell: {
-    padding: '4px 24px 4px 24px', // rewrite defult TableCell style
+    padding: '4px 24px 4px 24px', // rewrite default TableCell style
   },
   notification: {
     textAlign: 'center',
