@@ -23,11 +23,11 @@ class GameField extends Component {
     return (
       <div className={classes.gameField}>
         <Grid container className={classes.players}>
-          <Grid item xs={5}>
+          <Grid item xs={5} className={classes.photoContainer}>
             <img src={boo} alt="boo" className={classes.photo} />
           </Grid>
           <Grid item xs />
-          <Grid item xs={5}>
+          <Grid item xs={5} className={classes.photoContainer}>
             <img src={monster} alt="monster" className={classes.photo} />
           </Grid>
         </Grid>
@@ -52,6 +52,9 @@ const styles = {
   },
   players: {
     height: '70%',
+  },
+  photoContainer: {
+    height: '100%',
   },
   photo: {
     maxHeight: '100%',
